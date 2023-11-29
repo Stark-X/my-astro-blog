@@ -13,9 +13,6 @@ categories: Basic
 header_image:
 ---
 
-<!-- toc -->
-<!-- Description to show on index here  -->
-
 HTTP/2（曾用名：HTTP/2.0[^http2.0]），改进的目标是使得应用更快，更简单，更稳定，它把以前针对 HTTP/1.1 作出的优化方案内置于[[TCP 协议#传输层]]中，使得进行更多的优化成为可能。
 
 [^http2.0]: _HTTP/2.0_：根据 [wikipedia](https://en.wikipedia.org/wiki/HTTP/2#Development_milestones) 的记录，HTTP/2 在 2012 年初，曾用 HTTP/2.0 作为名字，在 2015 年 1 月之后，正式命名为 HTTP/2。
@@ -25,8 +22,6 @@ HTTP/2 的主要改进方向是通过支持请求、响应复用以减少延迟�
 HTTP/2 没有对 HTTP/1.1 的概念进行改动，它改动的是数据格式化（分帧）以及客户端与服务端传输的方式。通过这两项改动，现有的应用不需要做修改，就可以在新的协议下运行。
 
 为什么不叫 HTTP1.2 ？因为HTTP/2 引入的“二进制分帧层”与以前的 HTTP 传输的内容的实现不兼容，所以更改了主版本号。
-
-<!-- more -->
 
 ## SPDY 与 HTTP/2
 

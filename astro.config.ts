@@ -1,9 +1,12 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import remarkToc from "remark-toc";
-import remarkCollapse from "remark-collapse";
+import tailwind from "@astrojs/tailwind";
+import { defineConfig } from "astro/config";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+
 import sitemap from "@astrojs/sitemap";
+import toc from "@jsdevtools/rehype-toc";
+import rehypeSlug from "rehype-slug";
 import { SITE } from "./src/config";
 
 import mdx from "@astrojs/mdx";
@@ -20,14 +23,11 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [
-      remarkToc,
-      [
-        remarkCollapse,
-        {
-          test: "Table of contents",
-        },
-      ],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+      [rehypeExternalLinks, { content: { type: "text", value: " 🔗" } }],
+      toc,
     ],
     shikiConfig: {
       theme: "one-dark-pro",
