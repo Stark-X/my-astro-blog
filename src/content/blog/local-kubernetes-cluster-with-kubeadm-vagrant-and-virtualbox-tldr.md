@@ -19,7 +19,7 @@ timeliness: true
 <!-- toc -->
 <!-- Description to show on index here  -->
 
-本文章是上一篇文章「{% post_link Local-kubernetes-cluster-with-kubeadm-vagrant-and-virtualbox %}」的 TL;DR 版本。
+本文章是上一篇文章「<a href="/posts/使用kubeadm-vagrant-virtualbox部署本地kubernetes集群">使用Kubeadm, Vagrant, Virtualbox部署本地Kubernetes集群</a> 」的 TL;DR 版本。
 
 # 目标
 
