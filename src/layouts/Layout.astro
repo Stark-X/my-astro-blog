@@ -4,6 +4,7 @@ import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const gTagId = import.meta.env.GTAG_ID;
 
 export interface Props {
   title?: string;
@@ -75,6 +76,22 @@ const socialImageURL = new URL(
           name="google-site-verification"
           content={googleSiteVerification}
         />
+      )
+    }
+    {
+      // If GTAG_ID is set in the environment variable,
+      // include google gtag script in the heading
+      // Learn more: https://developers.google.com/analytics/devguides/collection/gtagjs
+      gTagId && (
+        <!-- Google tag (gtag.js) -->
+        <script is:inline async src=`https://www.googletagmanager.com/gtag/js?id=${gTagId}` />
+        <script define:vars={{  gTagId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', gTagId);
+        </script>
       )
     }
 
