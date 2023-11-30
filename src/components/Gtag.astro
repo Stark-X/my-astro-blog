@@ -10,12 +10,11 @@ const { gTagId } = Astro.props;
   is:inline
   async
   src={`https://www.googletagmanager.com/gtag/js?id=${gTagId}`}></script>
-<script define:vars={{ gTagId }}>
+<script define:vars={{ id: gTagId }}>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     window.dataLayer.push(arguments);
   }
   gtag("js", new Date());
-
-  gtag("config", gTagId);
+  gtag("config", id);
 </script>
