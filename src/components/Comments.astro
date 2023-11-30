@@ -1,0 +1,22 @@
+---
+export interface Props {
+  walineServer: string;
+}
+
+const { walineServer } = Astro.props;
+---
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+/>
+
+<div id="waline"></div>
+<script is:inline type="module" define:vars={{ serverURL: walineServer }}>
+  import { init } from "https://unpkg.com/@waline/client@v2/dist/waline.mjs";
+
+  init({
+    el: "#waline",
+    serverURL,
+  });
+</script>

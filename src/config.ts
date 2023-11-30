@@ -10,6 +10,11 @@ export const SITE: Site = {
   postPerPage: 5,
 };
 
+export const COMPONENTS_CFG = {
+  // leave empty will disable the walinejs comment component
+  walineServer: "https://blog-comment.stark-x.cn/",
+};
+
 export const LOCALE = ["zh-Hans"]; // set to [] to use the environment default
 
 export const LOGO_IMAGE = {
