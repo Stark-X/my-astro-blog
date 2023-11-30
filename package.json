@@ -5,6 +5,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build && jampack ./dist",
+    "build:vercel": "astro check && astro build && jampack .vercel/output/static",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
