@@ -1,4 +1,6 @@
 ---
+import { Waline } from "@components/Waline";
+
 export interface Props {
   walineServer: string;
 }
@@ -6,17 +8,9 @@ export interface Props {
 const { walineServer } = Astro.props;
 ---
 
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+<Waline
+  serverURL={walineServer}
+  reaction
+  path={Astro.url.pathname}
+  client:visible
 />
-
-<div id="waline"></div>
-<script is:inline type="module" define:vars={{ serverURL: walineServer }}>
-  import { init } from "https://unpkg.com/@waline/client@v2/dist/waline.mjs";
-
-  init({
-    el: "#waline",
-    serverURL,
-  });
-</script>
