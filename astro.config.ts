@@ -9,7 +9,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 import { SITE } from "./src/config";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,7 +40,7 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
-  output: "server",
+  output: "static",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
@@ -48,6 +48,5 @@ export default defineConfig({
     speedInsights: {
       enabled: true,
     },
-    edgeMiddleware: true,
   }),
 });
