@@ -18,6 +18,7 @@
     "@astrojs/check": "^0.2.1",
     "@astrojs/mdx": "^1.1.5",
     "@astrojs/rss": "^3.0.0",
+    "@astrojs/vercel": "^5.2.0",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@resvg/resvg-js": "^2.4.1",
     "astro": "^3.1.3",
