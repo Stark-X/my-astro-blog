@@ -10,7 +10,10 @@ const { walineServer } = Astro.props;
 
 <Waline
   serverURL={walineServer}
-  reaction
+  reaction={[
+    "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_up/materialiconsoutlined/48dp/2x/outline_thumb_up_black_48dp.png",
+    "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_down/materialiconsoutlined/48dp/2x/outline_thumb_down_black_48dp.png",
+  ]}
   path={Astro.url.pathname}
   login="force"
   client:visible
