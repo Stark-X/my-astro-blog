@@ -6,6 +6,9 @@ const KV_REST_API_TOKEN = import.meta.env.KV_REST_API_TOKEN;
 const isDev = import.meta.env.DEV;
 
 export const GET: APIRoute = async ctx => {
+  const v = ctx.url.searchParams.get("v") || "404";
+  console.log("v", v);
+
   if (isDev) {
     return new Response(
       JSON.stringify({
