@@ -23,6 +23,7 @@
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@resvg/resvg-js": "^2.4.1",
     "@vercel/analytics": "^1.1.1",
+    "@vercel/kv": "^1.0.0",
     "@vercel/speed-insights": "^0.0.6",
     "astro": "^3.1.3",
     "fuse.js": "^6.6.2",

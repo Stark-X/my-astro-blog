@@ -8,6 +8,7 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import { COMPONENTS_CFG } from "@config";
 import Comments from "@components/Comments.astro";
+import PageView from "@components/PageView.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -50,6 +51,7 @@ const ogUrl = new URL(
   <main id="main-content">
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     <Datetime datetime={pubDatetime} size="lg" className="my-2" />
+    <PageView />
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>

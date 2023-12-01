@@ -1,0 +1,14 @@
+---
+---
+
+<div id="pv-count"></div>
+<script>
+  (async () => {
+    {/* defined in /src/pages/api/setPV.ts */}
+    const pvUrl = `/api/setPV?v=${window.location.pathname}`;
+    const rawData = await fetch(pvUrl);
+    const jsonData = await rawData.json();
+    document.querySelector("#pv-count")!.innerHTML =
+      jsonData.message + " views";
+  })();
+</script>
