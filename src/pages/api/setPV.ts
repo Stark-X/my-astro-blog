@@ -8,9 +8,6 @@ const isDev = import.meta.env.DEV;
 // prevent prerender the api return
 export const prerender = false;
 export const GET: APIRoute = async ctx => {
-  const v = ctx.url.searchParams.get("v") || "404";
-  console.log("update pv for", v);
-
   if (isDev) {
     return new Response(
       JSON.stringify({
