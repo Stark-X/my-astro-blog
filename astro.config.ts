@@ -40,7 +40,7 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
-  output: "hybrid",
+  output: "server",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
