@@ -49,4 +49,18 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  redirects: {
+    "/Solutions/Local-kubernetes-cluster-with-kubeadm-vagrant-and-virtualbox.html":
+      "/posts/使用kubeadm-vagrant-virtualbox部署本地kubernetes集群",
+    "/Solutions/local-kubernetes-cluster-with-kubeadm-vagrant-and-virtualbox-tldr.html":
+      "/posts/使用kubeadm-vagrant-virtualbox部署本地kubernetes集群---tldr",
+    "/Solutions/Use-kolla-ansible-deploy-OpenStack.html":
+      "/posts/使用-kolla-ansible-部署-openstack",
+    "/troubleshoot/shell-value-too-great-for-base-error-token-is-08.html":
+      "/posts/shell---value-too-great-for-base-error-token-is-08",
+    "/Develop/Using-Mockito-to-partially-mock-a-class.html":
+      "/posts/使用-mockito-mock-类的一部分-译",
+    "/Tools/the-great-vim.html": "/posts/上古神器vim",
+    "/Basic/http-2-0.html": "/posts/http2",
+  },
 });
