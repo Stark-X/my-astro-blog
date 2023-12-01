@@ -51,16 +51,17 @@ export default defineConfig({
   }),
   redirects: {
     "/Solutions/Local-kubernetes-cluster-with-kubeadm-vagrant-and-virtualbox.html":
-      "/posts/使用kubeadm-vagrant-virtualbox部署本地kubernetes集群",
+      "/posts/%E4%BD%BF%E7%94%A8kubeadm-vagrant-virtualbox%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0kubernetes%E9%9B%86%E7%BE%A4",
     "/Solutions/local-kubernetes-cluster-with-kubeadm-vagrant-and-virtualbox-tldr.html":
-      "/posts/使用kubeadm-vagrant-virtualbox部署本地kubernetes集群---tldr",
+      "/posts/%E4%BD%BF%E7%94%A8kubeadm-vagrant-virtualbox%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0kubernetes%E9%9B%86%E7%BE%A4---tldr",
     "/Solutions/Use-kolla-ansible-deploy-OpenStack.html":
-      "/posts/使用-kolla-ansible-部署-openstack",
+      "/posts/%E4%BD%BF%E7%94%A8-kolla-ansible-%E9%83%A8%E7%BD%B2-openstack",
     "/troubleshoot/shell-value-too-great-for-base-error-token-is-08.html":
       "/posts/shell---value-too-great-for-base-error-token-is-08",
     "/Develop/Using-Mockito-to-partially-mock-a-class.html":
-      "/posts/使用-mockito-mock-类的一部分-译",
-    "/Tools/the-great-vim.html": "/posts/上古神器vim",
+      "/posts/%E4%BD%BF%E7%94%A8-mockito-mock-%E7%B1%BB%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86-%E8%AF%91",
+    "/Tools/the-great-vim.html":
+      "/posts/%E4%B8%8A%E5%8F%A4%E7%A5%9E%E5%99%A8vim",
     "/Basic/http-2-0.html": "/posts/http2",
   },
 });
