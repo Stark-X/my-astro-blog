@@ -25,7 +25,8 @@ const { fontRegular, fontBold } = await fetchFonts();
 const options: SatoriOptions = {
   width: 1200,
   height: 630,
-  embedFont: true,
+  // https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/#limitations
+  embedFont: false,
   fonts: [
     {
       name: "IBM Plex Mono",
