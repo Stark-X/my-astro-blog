@@ -4,7 +4,7 @@ import { createClient } from "@vercel/kv";
 const KV_REST_API_URL = import.meta.env.KV_REST_API_URL;
 const KV_REST_API_TOKEN = import.meta.env.KV_REST_API_TOKEN;
 
-export const get: APIRoute = async ctx => {
+export const GET: APIRoute = async ctx => {
   try {
     if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
       throw new Error("missing env");
@@ -16,18 +16,16 @@ export const get: APIRoute = async ctx => {
     });
 
     const number = await client.incr(`PV_${v}`);
-    return {
-      body: JSON.stringify({
+    return new Response(
+      JSON.stringify({
         state: "ok",
         message: number,
-      }),
-    };
+      })
+    );
   } catch (error) {
-    return {
-      body: JSON.stringify({
-        state: "fail",
-        message: error,
-      }),
-    };
+    return new Response(null, {
+      status: 500,
+      statusText: "Internal Server Error",
+    });
   }
 };
