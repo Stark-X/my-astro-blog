@@ -29,9 +29,6 @@ dependencies:
   '@vercel/kv':
     specifier: ^1.0.0
     version: 1.0.0
-  '@vercel/speed-insights':
-    specifier: ^0.0.6
-    version: 0.0.6
   astro:
     specifier: ^3.1.3
     version: 3.6.0(@types/node@18.18.13)(typescript@5.3.2)
@@ -1872,11 +1869,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
-    dev: false
-
-  /@vercel/speed-insights@0.0.6:
-    resolution: {integrity: sha512-vHtktTVxLJw4bVIIPHqePlmpSEQvLGnn5pxi7dZNaxqocPwpQnfw15K4F8xPMWI1oAZ0rBBBRwo9cW8VnX9lbw==}
-    requiresBuild: true
     dev: false
 
   /@vitejs/plugin-react@4.2.0(vite@5.0.3):
