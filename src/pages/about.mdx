@@ -4,6 +4,7 @@ title: "关于我"
 description: "一个啥都略懂的 DevOps 工程师👨‍🔧，专注于研发效能领域，擅长设计方案、应用新技术解决研发过程中的各种问题。"
 ---
 
+import Album from "@components/Album.astro";
 import Socials from "@components/Socials.astro";
 
 {frontmatter.description}
@@ -23,6 +24,13 @@ import Socials from "@components/Socials.astro";
   async
   src="//cdn.credly.com/assets/utilities/embed.js"
 ></script>
+
+<Album
+  badgeSources={[
+    "https://aliyun-aps-cloud-public.oss-cn-hangzhou.aliyuncs.com/img_534896599bc706c1c10423419510fdea.png",
+    "https://images.squarespace-cdn.com/content/v1/53589984e4b0ed47accdc174/1577605936120-B5ULHRWSMQ3CH9AOTLHD/SAFe5-SA_300px.png?format=1000w",
+  ]}
+/>
 
 ## 经历 | Experience
 
