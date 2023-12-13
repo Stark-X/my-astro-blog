@@ -1,6 +1,4 @@
 ---
-import { Waline } from "@components/Waline";
-
 export interface Props {
   walineServer: string;
 }
@@ -8,13 +6,22 @@ export interface Props {
 const { walineServer } = Astro.props;
 ---
 
-<Waline
-  serverURL={walineServer}
-  reaction={[
-    "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_up/materialiconsoutlined/48dp/2x/outline_thumb_up_black_48dp.png",
-    "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_down/materialiconsoutlined/48dp/2x/outline_thumb_down_black_48dp.png",
-  ]}
-  path={Astro.url.pathname}
-  login="force"
-  client:visible
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
 />
+
+<div id="waline"></div>
+<script define:vars={{ serverURL: walineServer }} type="module">
+  import { init } from "https://unpkg.com/@waline/client@v2/dist/waline.mjs";
+
+  init({
+    el: "#waline",
+    serverURL,
+    reaction: [
+      "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_up/materialiconsoutlined/48dp/2x/outline_thumb_up_black_48dp.png",
+      "https://cdn.bootcdn.net/ajax/libs/material-design-icons/4.0.0/png/action/thumb_down/materialiconsoutlined/48dp/2x/outline_thumb_down_black_48dp.png",
+    ],
+    login: "force",
+  });
+</script>
