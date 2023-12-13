@@ -13,22 +13,20 @@ import Socials from "@components/Socials.astro";
 
 ## 证书 | Certified
 
-<div
-  data-iframe-width="150"
-  data-iframe-height="270"
-  data-share-badge-id="086e450e-b4bb-48e0-9bfe-2d3ad8922c96"
-  data-share-badge-host="https://www.credly.com"
-></div>
-<script
-  type="text/javascript"
-  async
-  src="//cdn.credly.com/assets/utilities/embed.js"
-></script>
-
 <Album
-  badgeSources={[
-    "https://aliyun-aps-cloud-public.oss-cn-hangzhou.aliyuncs.com/img_534896599bc706c1c10423419510fdea.png",
-    "https://images.squarespace-cdn.com/content/v1/53589984e4b0ed47accdc174/1577605936120-B5ULHRWSMQ3CH9AOTLHD/SAFe5-SA_300px.png?format=1000w",
+  badges={[
+    {
+      imageUrl:
+        "https://aliyun-aps-cloud-public.oss-cn-hangzhou.aliyuncs.com/img_534896599bc706c1c10423419510fdea.png",
+      name: "ACP",
+      issuer: "Aliyun",
+    },
+    {
+      imageUrl:
+        "https://images.squarespace-cdn.com/content/v1/53589984e4b0ed47accdc174/1577605936120-B5ULHRWSMQ3CH9AOTLHD/SAFe5-SA_300px.png?format=1000w",
+      name: "SAFe®5 Agilist",
+      issuer: "ScaledAgile",
+    },
   ]}
 />
 
