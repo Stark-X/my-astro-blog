@@ -1,20 +1,22 @@
 ---
 import { Image } from "astro:assets";
 export interface Props {
-  badgeSources: string[];
+  badges: string[];
 }
-const { badgeSources } = Astro.props;
+const { badges } = Astro.props;
 ---
 
 <div class="container">
   {
-    badgeSources.map(badgeSource => (
+    badges.map(badge => (
       <div class="item">
-        <div class="img">
-          <Image src={badgeSource} alt="" width={100} height={100} />
+        <div class="img-container">
+          <Image src={badge} alt="" width={100} height={100} class="img"/>
         </div>
-        <div class="description">处理一般手机主题记者他们.</div>
-        <div class="issuer">PLC</div>
+        <div class="bottom">
+          <div class="description">处理一般手sdfasdf机主题记者他们.longlonglong</div>
+          <div class="issuer">PLC</div>
+        </div>
       </div>
     ))
   }
@@ -29,18 +31,31 @@ const { badgeSources } = Astro.props;
     gap: 1rem;
   }
   .item {
+    width: 10rem;
+    height: 16.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     border: 1px solid #eee;
+    border-radius: 10px;
   }
   .description {
-    margin: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    /* height: 3.5rem; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .img {
     margin: 0.5rem;
+  }
+  .img-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
   .issuer {
     font-size: 0.8rem;
@@ -49,5 +64,12 @@ const { badgeSources } = Astro.props;
     background-color: #eee;
     width: 100%;
     text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 </style>
