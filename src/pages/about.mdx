@@ -4,6 +4,7 @@ title: "关于我"
 description: "一个啥都略懂的 DevOps 工程师👨‍🔧，专注于研发效能领域，擅长设计方案、应用新技术解决研发过程中的各种问题。"
 ---
 
+import Album from "@components/Album.astro";
 import Socials from "@components/Socials.astro";
 
 {frontmatter.description}
@@ -12,17 +13,22 @@ import Socials from "@components/Socials.astro";
 
 ## 证书 | Certified
 
-<div
-  data-iframe-width="150"
-  data-iframe-height="270"
-  data-share-badge-id="086e450e-b4bb-48e0-9bfe-2d3ad8922c96"
-  data-share-badge-host="https://www.credly.com"
-></div>
-<script
-  type="text/javascript"
-  async
-  src="//cdn.credly.com/assets/utilities/embed.js"
-></script>
+<Album
+  badges={[
+    {
+      imageUrl:
+        "https://aliyun-aps-cloud-public.oss-cn-hangzhou.aliyuncs.com/img_534896599bc706c1c10423419510fdea.png",
+      name: "ACP",
+      issuer: "Aliyun",
+    },
+    {
+      imageUrl:
+        "https://images.squarespace-cdn.com/content/v1/53589984e4b0ed47accdc174/1577605936120-B5ULHRWSMQ3CH9AOTLHD/SAFe5-SA_300px.png?format=1000w",
+      name: "SAFe®5 Agilist",
+      issuer: "ScaledAgile",
+    },
+  ]}
+/>
 
 ## 经历 | Experience
 
