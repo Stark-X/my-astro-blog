@@ -8,12 +8,12 @@ const { walineServer } = Astro.props;
 
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+  href="https://npm.onmicrosoft.cn/@waline/client@v2/dist/waline.css"
 />
 
 <div id="waline"></div>
 <script define:vars={{ serverURL: walineServer }} type="module">
-  import { init } from "https://unpkg.com/@waline/client@v2/dist/waline.mjs";
+  import { init } from "https://npm.onmicrosoft.cn/@waline/client@v2/dist/waline.mjs";
 
   init({
     el: "#waline",
