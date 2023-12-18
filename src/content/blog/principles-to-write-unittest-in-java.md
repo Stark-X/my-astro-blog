@@ -11,7 +11,7 @@ keywords:
   - unittest
   - maven
 pubDatetime: 2023-12-17T11:11:11+08:00
-description: ""
+description: "单元测试是自动验证软件的最小可测试部分在隔离状态下按预期工作的过程。它有助于快速定位问题，提高代码质量，保证重构的安全性。本文会介绍一些关于单测的原则及实践。"
 categories: practice
 ---
 
