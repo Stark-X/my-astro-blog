@@ -1,8 +1,9 @@
 import type { CollectionEntry } from "astro:content";
+import { notDraftInPROD } from "@utils/postFilter";
 
 const getSortedPosts = (posts: CollectionEntry<"blog">[]) =>
   posts
-    .filter(({ data }) => !data.draft)
+    .filter(notDraftInPROD)
     .sort(
       (a, b) =>
         Math.floor(new Date(b.data.pubDatetime).getTime() / 1000) -
