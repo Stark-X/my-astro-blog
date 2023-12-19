@@ -35,6 +35,9 @@ dependencies:
   github-slugger:
     specifier: ^2.0.0
     version: 2.0.0
+  mdast-util-find-and-replace:
+    specifier: ^3.0.1
+    version: 3.0.1
   mdast-util-to-string:
     specifier: ^4.0.0
     version: 4.0.0

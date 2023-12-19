@@ -9,6 +9,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
 import { SITE } from "./src/config";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
+import { remarkGistToTag } from "./src/plugins/remark-gist-to-tag.mjs";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -24,7 +25,7 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime, remarkGistToTag],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "wrap" }],
