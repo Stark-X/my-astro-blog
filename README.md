@@ -1,4 +1,6 @@
-# AstroPaper 📄
+# 我的官方博客
+
+欢迎浏览，评论： https://blog.stark-x.cn
 
 我的个人博客，基于 [AstroPaper](https://github.com/satnaing/astro-paper)做了一些修改。
 
@@ -14,7 +16,7 @@ Markdown 文件内的 `gist.github.com/Stark-X/3dab3058e1c38d53821ba621ccd461ed`
 
 #### 文章阅读数
 
-利用了 Vercel 提供的[kv存储](https://vercel.com/docs/storage/vercel-kv)实现，参考[使用 Vercel Storage 给Astro站点添加浏览量统计功能](https://yuy1n.io/articles/add-pv-with-vercel-kv)实现，在原基础上增加了一段代码检查是否为本地开发，如果是，则直接返回999，避免本地开发时报错。
+利用了 Vercel 提供的[kv存储](https://vercel.com/docs/storage/vercel-kv)实现，参考[「使用 Vercel Storage 给Astro站点添加浏览量统计功能」](https://yuy1n.io/articles/add-pv-with-vercel-kv)实现，在原基础上增加了一段代码检查是否为本地开发，如果是，则直接返回999，避免本地开发时报错。
 
 **注意**
 
@@ -29,7 +31,7 @@ Markdown 文件内的 `gist.github.com/Stark-X/3dab3058e1c38d53821ba621ccd461ed`
 
 #### 认证证书陈列组件
 
-参考 SAFe Aglist 的认证证书的网页内嵌样式，模仿出来的组件，参考“关于我(about)”页面查看使用方式。
+参考 SAFe Aglist 的认证证书的网页内嵌样式，模仿出来的组件，参考[about.mdx](https://github.com/Stark-X/my-astro-blog/blob/master/src/pages/about.mdx)的使用方法，打开[关于我(about)](https://blog.stark-x.cn/about#%E8%AF%81%E4%B9%A6--certified)页面查看效果。
 
 #### GTag 统计浏览量
 
