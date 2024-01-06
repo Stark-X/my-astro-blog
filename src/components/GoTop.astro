@@ -1,0 +1,71 @@
+---
+
+---
+
+<div id="scrollToTopBtn">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 44 44"
+    style="width: 100%; height: 100%"
+  >
+    <path
+      d="M22,0C9.8,0,0,9.8,0,22s9.8,22,22,22s22-9.8,22-22C44,9.9,34.1,0,22,0z M22,41
+    C11.5,41,3,32.5,3,22S11.5,3,22,3s19,8.5,19,19S32.5,41,22,41z M23.6,16C23.6,16,23.6,16,23.6,16C23.6,15.9,23.5,15.9,23.6,16
+    c-0.1-0.1-0.2-0.2-0.3-0.2c-0.2-0.1-0.3-0.2-0.5-0.2c-0.2-0.1-0.4-0.1-0.6,0c-0.2,0-0.4,0.1-0.5,0.2c-0.1,0-0.1,0.1-0.2,0.1
+    c0,0,0,0,0,0c0,0,0,0,0,0l-7.5,8c-0.6,0.6-0.5,1.6,0.1,2.1c0.3,0.3,0.6,0.4,1,0.4c0.4,0,0.8-0.2,1.1-0.5l6.4-6.8l6.4,6.8
+    c0.3,0.3,0.7,0.5,1.1,0.5c0.4,0,0.8-0.1,1-0.4c0.6-0.6,0.6-1.5,0.1-2.1L23.6,16z"
+    ></path>
+  </svg>
+</div>
+<script is:inline>
+  // 获取回到顶部按钮元素
+  var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+  // 当页面发生滚动事件时
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      // 如果页面被滚动了一定距离，则显示按钮
+      scrollToTopBtn.style.display = "block";
+      scrollToTopBtn.style.opacity = "1";
+    } else {
+      // 否则，渐渐隐藏按钮
+      scrollToTopBtn.style.opacity = "0";
+      // 当不透明度降到0后，隐藏按钮元素，防止影响其他元素的交互
+      setTimeout(function () {
+        scrollToTopBtn.style.display = "none";
+      }, 500); // 这里的时间应该和css中的过渡时间一致
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
+  // 给按钮添加点击事件，回到页面顶部
+  scrollToTopBtn.addEventListener("click", scrollToTop);
+</script>
+
+<style>
+  #scrollToTopBtn {
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+    width: 40px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+    cursor: pointer;
+    display: none; /* 默认不显示 */
+    opacity: 0;
+    transition: opacity 0.5s; /* 平滑地显示和隐藏按钮 */
+    z-index: 1000; /* 确保按钮显示在最上层 */
+  }
+</style>

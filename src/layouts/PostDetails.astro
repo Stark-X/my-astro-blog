@@ -9,6 +9,7 @@ import { slugifyStr } from "@utils/slugify";
 import { COMPONENTS_CFG } from "@config";
 import Comments from "@components/Comments.astro";
 import PageView from "@components/PageView.astro";
+import GoTop from "@components/GoTop.astro";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -60,6 +61,7 @@ const ogUrl = new URL(
       <Content />
     </article>
 
+    <GoTop />
     <ul class="tags-container">
       {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
     </ul>
