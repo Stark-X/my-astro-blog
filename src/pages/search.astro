@@ -12,10 +12,11 @@ import { notDraftInPROD } from "@utils/postFilter";
 const posts = await getCollection("blog", notDraftInPROD);
 
 // List of items to search in
-const searchList = posts.map(({ data }) => ({
+const searchList = posts.map(({ data, slug }) => ({
   title: data.title,
   description: data.description,
   data,
+  slug,
 }));
 ---
 

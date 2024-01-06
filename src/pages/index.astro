@@ -8,7 +8,6 @@ import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
-import slugify from "@utils/slugify";
 import { SOCIALS } from "@config";
 import * as about from "./about.mdx";
 
@@ -64,9 +63,9 @@ const aboutMeDesc = about.frontmatter.description;
           <section id="featured">
             <h2>专栏</h2>
             <ul>
-              {featuredPosts.map(({ data }) => (
+              {featuredPosts.map(({ data, slug }) => (
                 <Card
-                  href={`/posts/${slugify(data)}`}
+                  href={`/posts/${slug}`}
                   frontmatter={data}
                   secHeading={false}
                 />
@@ -85,10 +84,10 @@ const aboutMeDesc = about.frontmatter.description;
           sortedPosts
             .filter(({ data }) => !data.featured)
             .map(
-              ({ data }, index) =>
+              ({ data, slug }, index) =>
                 index < 4 && (
                   <Card
-                    href={`/posts/${slugify(data)}`}
+                    href={`/posts/${slug}`}
                     frontmatter={data}
                     secHeading={false}
                   />
