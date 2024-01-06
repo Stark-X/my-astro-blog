@@ -15,7 +15,10 @@ export const COMPONENTS_CFG = {
   walineServer: "https://blog-comment.stark-x.cn/",
 };
 
-export const LOCALE = ["zh-Hans"]; // set to [] to use the environment default
+export const LOCALE = {
+  lang: "zh", // html lang code. Set this empty and default will be "en"
+  langTag: ["zh-Hans"], // BCP 47 Language Tags. Set this empty [] to use the environment default
+} as const;
 
 export const LOGO_IMAGE = {
   enable: true,
