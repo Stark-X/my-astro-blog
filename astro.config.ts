@@ -2,7 +2,6 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import toc from "@jsdevtools/rehype-toc";
 import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
@@ -30,7 +29,7 @@ export default defineConfig({
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "wrap" }],
       [rehypeExternalLinks, { content: { type: "text", value: " 🔗" } }],
-      toc,
+      "@jsdevtools/rehype-toc",
     ],
     shikiConfig: {
       theme: "one-dark-pro",
@@ -46,9 +45,6 @@ export default defineConfig({
   output: "hybrid",
   adapter: vercel({
     webAnalytics: {
-      enabled: true,
-    },
-    speedInsights: {
       enabled: true,
     },
     edgeMiddleware: true,
