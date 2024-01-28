@@ -24,6 +24,7 @@
     "@resvg/resvg-js": "^2.4.1",
     "@vercel/analytics": "^1.1.1",
     "@vercel/kv": "^1.0.0",
+    "@vercel/speed-insights": "^1.0.8",
     "astro": "^4.0.3",
     "fuse.js": "^6.6.2",
     "github-slugger": "^2.0.0",
