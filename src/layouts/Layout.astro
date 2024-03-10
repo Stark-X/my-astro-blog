@@ -3,6 +3,7 @@ import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 import Gtag from "@components/Gtag.astro";
+import Umami from "@components/Umami.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
@@ -91,13 +92,7 @@ const socialImageURL = new URL(
       // If UMAMI_ID is set in the environment variable,
       // include umami script in the heading
       // Learn more: https://umami.is/docs
-      umamiId && (
-        <script
-          defer
-          data-website-id={umamiId}
-          src="https://analytics.eu.umami.is/script.js"
-        />
-      )
+      umamiId && <Umami umamiId={umamiId} />
     }
 
     <ViewTransitions />
