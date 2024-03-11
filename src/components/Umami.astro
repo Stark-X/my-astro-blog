@@ -1,14 +1,15 @@
 ---
 export interface Props {
-  umamiId: string;
+  id: string;
+  scriptSrc: string;
 }
 
-const { umamiId } = Astro.props;
+const { id, scriptSrc } = Astro.props;
 ---
 <script
   is:inline
   async
   defer
-  data-website-id={umamiId}
-  src="https://analytics.eu.umami.is/script.js"
+  data-website-id={id}
+  src={scriptSrc}
 />

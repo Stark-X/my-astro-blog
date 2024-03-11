@@ -9,6 +9,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const gTagId = import.meta.env.GTAG_ID;
 const umamiId = import.meta.env.UMAMI_ID;
+const umamiScriptSrc = import.meta.env.UMAMI_SCRIPT_SRC;
 
 export interface Props {
   title?: string;
@@ -89,10 +90,10 @@ const socialImageURL = new URL(
       gTagId && <Gtag gTagId={gTagId} />
     }
     {
-      // If UMAMI_ID is set in the environment variable,
+      // If UMAMI_ID && UMAMI_SCRIPT_SRC is set in the environment variable,
       // include umami script in the heading
       // Learn more: https://umami.is/docs
-      umamiId && <Umami umamiId={umamiId} />
+      umamiId && umamiScriptSrc && <Umami id={umamiId} scriptSrc={umamiScriptSrc}/>
     }
 
     <ViewTransitions />
