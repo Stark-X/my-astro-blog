@@ -17,7 +17,11 @@ const { badges } = Astro.props;
 <div class="container">
   {
     badges.map(badge => (
-      <div class="item" data-link={badge.link} title={"jump to " + badge.link}>
+      <cert-badage
+        class="item"
+        title={"jump to " + badge.link}
+        data-link={badge.link}
+      >
         <div class="img-container">
           <Image
             src={badge.imageUrl}
@@ -33,26 +37,26 @@ const { badges } = Astro.props;
             <small>ISSUED BY</small> {badge.issuer}
           </div>
         </div>
-      </div>
+      </cert-badage>
     ))
   }
 </div>
 
 <script>
-  const links = document.querySelectorAll("[data-link]");
+  class Badage extends HTMLElement {
+    constructor() {
+      super();
 
-  // Add event listeners to fire link-open when a item is clicked.
-  links.forEach(link => {
-    link.addEventListener("click", () =>
-      window.open(link.dataset["link"], "_blank")
-    );
-    link.addEventListener("mouseover", function () {
-      this.style.cursor = "pointer";
-    });
-    link.addEventListener("mouseout", function () {
-      this.style.cursor = "default";
-    });
-  });
+      // Add event listeners to fire link-open when a item is clicked.
+      this.addEventListener("click", () =>
+        window.open(this.dataset["link"], "_blank")
+      );
+      this.addEventListener("mouseover", () => (this.style.cursor = "pointer"));
+      this.addEventListener("mouseout", () => (this.style.cursor = "default"));
+    }
+  }
+  // Tell the browser to use our Badage class for <cert-badage> elements.
+  customElements.define("cert-badage", Badage);
 </script>
 
 <style>
