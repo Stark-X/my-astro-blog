@@ -5,6 +5,7 @@ export interface Badge {
   name: string;
   issuer: string;
   imageUrl: string;
+  link: string;
 }
 export interface Props {
   badges: Badge[];
@@ -16,7 +17,7 @@ const { badges } = Astro.props;
 <div class="container">
   {
     badges.map(badge => (
-      <div class="item">
+      <div class="item" data-link={badge.link} title={"jump to " + badge.link}>
         <div class="img-container">
           <Image
             src={badge.imageUrl}
@@ -36,6 +37,23 @@ const { badges } = Astro.props;
     ))
   }
 </div>
+
+<script>
+  const links = document.querySelectorAll("[data-link]");
+
+  // Add event listeners to fire link-open when a item is clicked.
+  links.forEach(link => {
+    link.addEventListener("click", () =>
+      window.open(link.dataset["link"], "_blank")
+    );
+    link.addEventListener("mouseover", function () {
+      this.style.cursor = "pointer";
+    });
+    link.addEventListener("mouseout", function () {
+      this.style.cursor = "default";
+    });
+  });
+</script>
 
 <style>
   .container {
