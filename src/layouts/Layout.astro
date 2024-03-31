@@ -93,7 +93,9 @@ const socialImageURL = new URL(
       // If UMAMI_ID && UMAMI_SCRIPT_SRC is set in the environment variable,
       // include umami script in the heading
       // Learn more: https://umami.is/docs
-      umamiId && umamiScriptSrc && <Umami id={umamiId} scriptSrc={umamiScriptSrc}/>
+      umamiId && umamiScriptSrc && (
+        <Umami id={umamiId} scriptSrc={umamiScriptSrc} />
+      )
     }
 
     <ViewTransitions />

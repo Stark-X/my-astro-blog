@@ -6,10 +6,5 @@ export interface Props {
 
 const { id, scriptSrc } = Astro.props;
 ---
-<script
-  is:inline
-  async
-  defer
-  data-website-id={id}
-  src={scriptSrc}
-/>
+
+<script is:inline async defer data-website-id={id} src={scriptSrc}></script>
