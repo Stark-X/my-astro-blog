@@ -1,0 +1,142 @@
+---
+title: "程序内调用子进程未处理输出而引发的死锁"
+pubDatetime: 2024-04-27T10:00:00+08:00
+description: "在程序代码里先执行进程，再处理标准输出、标准错误可能会陷入死锁。 "
+categories: Progamming
+tags:
+  - Java
+  - Coding
+  - debug
+keywords:
+  - Java
+  - deadlock
+  - thread
+---
+
+## 场景描述
+
+以下是一段 Java 代码，在执行到这个方法时程序挂起了。然而，将相同的命令直接复制到终端中运行却可以正常输出并顺利结束。请问，问题可能出在哪里？
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ExecuteScript {
+    public static void main(String[] args) {
+        String osCmd = "your-command-script-string-here";
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            Process process = Runtime.getRuntime().exec(osCmd);
+            process.waitFor();
+            String line;
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(new StringBuilder().append(line).append("\n").toString());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("IOException occurred: " + e.getMessage());
+        } catch (InterruptedException e) {
+            System.out.println("InterruptedException occurred: " + e.getMessage());
+        }
+
+        System.out.println("Output of the script execution:\n" + sb.toString());
+    }
+}
+```
+
+---
+
+## 管道缓冲
+
+问题出现在命令的**管道输出是有缓冲的**，如果 [[管道输出]] 的内容过多，Java 的 **Process** 类可能会卡住。这主要是因为当子进程的输出缓冲区填满时，如果没有及时读取这些输出，子进程会阻塞等待缓冲区被清空以继续输出。如果父进程没有处理（读取或忽略）这些输出，就会导致子进程挂起，进而导致整个进程看似“卡住”不动。
+
+我们可以通过命令 `ulimit -a | grep pip` 查看 Linux 服务器的管道输出缓冲大小，在我的服务器上的值为 8 \* 512bytes，如果我的程序执行的命令的输出超过这个大小，程序就会 [[Deadlock（死锁）]] 。
+
+通过下面的 Shell 脚本，我们可以快速地模拟这个死锁场景
+
+```bash
+#!/bin/bash
+
+# 生成大量输出的命令，例如使用 yes 命令
+yes "This is a long line of text" | head -c 5G > /dev/null &
+# head -c 5G 用于限制输出到5GB，防止无限制输出
+
+# 获取上一个后台进程的PID
+PID=$!
+
+# 等待一段时间，让管道有机会填满
+sleep 3
+
+# 尝试读取输出，但不实际处理它
+cat /dev/null > /proc/$PID/fd/1
+
+echo "should print immediaetly after this line"
+
+# 等待后台进程完成
+wait $PID
+
+echo "should print"
+```
+
+在这个脚本中，`yes` 命令会不断输出长字符串，`head -c 5G` 用于限制输出到 5GB，以模拟大量输出的情况。
+
+1. 脚本会启动这个命令作为后台进程，并获取其 `PID`。
+2. 脚本稍作等待，以便让管道缓冲区有机会被填满。
+3. 接着，脚本尝试读取与该进程关联的管道输出，但实际上是将 `/dev/null` 的内容重定向到该进程的标准输出，这不会读取任何数据。
+4. 最后，脚本使用 `wait` 命令等待后台进程完成。
+
+请注意，这个脚本并不保证一定会导致死锁，因为管道缓冲区的大小和系统的行为可能会有所不同。但是，如果不适当地处理大量的输出，这个脚本可以模拟可能导致进程挂起的情况。此外，由于 Linux 系统中管道缓冲区的大小通常为 64KiB，可能需要调整脚本中的输出量，以确保足以填满缓冲区。
+
+## 如何避免？
+
+关键是：**及时**处理子进程的输出。
+
+下面的示例通过启动一个新线程来读取输出来解决这个问题。这是示例代码的改进版本（Powered by GPT），它创建了一个单独的 [[线程 Thread]] 来处理 [[子进程 SubProcess]] 的输出，从而避免了死锁的风险：
+
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class ExecuteScript {
+    public static void main(String[] args) throws Exception {
+        String osCmd = "your_command_here";  // 替换为实际的命令
+        Process process = Runtime.getRuntime().exec(osCmd);
+
+        // 使用线程池来处理流，避免阻塞主线程
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        final StringBuilder sb = new StringBuilder();
+
+        executor.submit(() -> {
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // 等待进程结束
+        process.waitFor();
+        // 关闭执行器以释放资源
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
+
+        // 输出收集到的数据
+        System.out.println(sb.toString());
+    }
+}
+```
+
+在这个修改后的代码中，使用了 `ExecutorService` 来创建一个线程，这个线程负责读取和处理子进程的输出。这样，主线程调用 `process.waitFor()` 等待子进程结束时，子进程的输出已经被另一个线程持续地读取和清空，从而避免了缓冲区填满导致的死锁。
+
+## 总结
+
+无论使用哪种编程语言，当子进程的管道输出过多而填满缓冲区时，都可能导致死锁。因此，在编写类似逻辑时，务必要及时处理 [[标准输出 stdout]] 和 [[标准错误 stderr]]。为了防止程序阻塞和 [[雪崩]]，最好还是加入超时机制。
