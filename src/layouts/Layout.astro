@@ -4,11 +4,13 @@ import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 import Gtag from "@components/Gtag.astro";
 import Umami from "@components/Umami.astro";
+import AdSense from "@components/AdSense.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const gTagId = import.meta.env.GTAG_ID;
 const umamiId = import.meta.env.UMAMI_ID;
+const adSenseId = import.meta.env.ADSENSE_ID;
 const umamiScriptSrc = import.meta.env.UMAMI_SCRIPT_SRC;
 
 export interface Props {
@@ -97,6 +99,7 @@ const socialImageURL = new URL(
         <Umami id={umamiId} scriptSrc={umamiScriptSrc} />
       )
     }
+    {adSenseId && <AdSense id={adSenseId} />}
 
     <ViewTransitions />
 
