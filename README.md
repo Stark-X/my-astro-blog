@@ -4,7 +4,7 @@
 
 我的个人博客，基于 [AstroPaper](https://github.com/satnaing/astro-paper)做了一些修改。
 
-原主题基于 Astro 3.X，我的修改版本已经把 Astro 更新到 4.X，并做了对应的适配。
+~~原主题基于 Astro 3.X，我的修改版本已经把 Astro 更新到 4.X，并做了对应的适配。~~已升级到 Astro 5.X
 
 ## 特性
 
@@ -74,4 +74,4 @@ _Note: I've tested screen-reader accessibility of AstroPaper using **VoiceOver**
 
 ## 📜 License
 
-Licensed under the MIT License, Copyright © 2023
+Licensed under the MIT License, Copyright © 2025
