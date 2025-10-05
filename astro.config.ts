@@ -42,7 +42,7 @@ export default defineConfig({
     },
   },
   scopedStyleStrategy: "where",
-  output: "hybrid",
+  // output: "static", // it's default value now
   adapter: vercel({
     webAnalytics: {
       enabled: true,
