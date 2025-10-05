@@ -6,11 +6,13 @@ import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeSlug from "rehype-slug";
+import rehypeToc from "@jsdevtools/rehype-toc";
 import { SITE } from "./src/config";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { remarkGistToTag } from "./src/plugins/remark-gist-to-tag.mjs";
+import type { RehypePlugin } from "@astrojs/markdown-remark";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,7 +31,7 @@ export default defineConfig({
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: "wrap" }],
       [rehypeExternalLinks, { content: { type: "text", value: " 🔗" } }],
-      "@jsdevtools/rehype-toc",
+      rehypeToc as unknown as RehypePlugin,
     ],
     shikiConfig: {
       theme: "one-dark-pro",

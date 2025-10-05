@@ -71,5 +71,10 @@
     "*.{js,jsx,ts,tsx,md,mdx,json}": [
       "prettier --plugin-search-dir=. --write"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "sharp": "0.34.4"
+    }
   }
 }

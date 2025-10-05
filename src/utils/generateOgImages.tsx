@@ -43,18 +43,23 @@ const options: SatoriOptions = {
   ],
 };
 
-function svgBufferToPngBuffer(svg: string) {
+function svgBufferToPngBuffer(svg: string): ArrayBuffer {
   const resvg = new Resvg(svg);
   const pngData = resvg.render();
-  return pngData.asPng();
+  const pngBuffer = pngData.asPng();
+  const arrayBuffer = new ArrayBuffer(pngBuffer.byteLength);
+  new Uint8Array(arrayBuffer).set(pngBuffer);
+  return arrayBuffer;
 }
 
-export async function generateOgImageForPost(post: CollectionEntry<"blog">) {
+export async function generateOgImageForPost(
+  post: CollectionEntry<"blog">
+): Promise<ArrayBuffer> {
   const svg = await satori(postOgImage(post), options);
   return svgBufferToPngBuffer(svg);
 }
 
-export async function generateOgImageForSite() {
+export async function generateOgImageForSite(): Promise<ArrayBuffer> {
   const svg = await satori(siteOgImage(), options);
   return svgBufferToPngBuffer(svg);
 }
